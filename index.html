@@ -1,0 +1,193 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A cool thing made with Glitch">
+
+    <title>Discord Webhook's simplified</title><!--Title of the website-->
+
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon"><!--Icon that is displayed next to the Title.-->
+    
+  </head>
+  <div><!-- The div is just to make it easier for displaying the css together. -->
+       <button onclick="sendMessage();">Send</button>
+    <input type="text" id="myName" placeholder="WebHook Name" value="" title="Type in a category">
+    <input type="text" id="myMessage" placeholder="WebHook Content/Message" value="" title="Type in a category">
+    <input type="text" id="widgetUrl" placeholder="WebHook Url" value="" title="Type in a category">
+      <input type="text" id="avatarUrl" placeholder="Avatar Url, leave blank if default" value="" title="Type in a category">
+
+  </div>
+  
+<script>
+     function sendMessage() {
+      var name = document.getElementById("myName").value;/*Gets the text from the name input bar.*/
+      var message_content = document.getElementById("myMessage").value;/*Gets the text from the message input bar.*/
+      var widget_url = document.getElementById("widgetUrl").value;/*Gets the text from the widget url input bar.*/
+      var avatar_url = document.getElementById("avatarUrl").value;/*Gets the text from the widget avatar input bar.*/
+      //var widget_url = document.getElementById("widgetUrl").value; /*<-- You can remove this.*/
+      var request = new XMLHttpRequest(); /*Leave this line of code alone or the webhook will not function.*/
+      request.open("POST", widget_url);/*Set the widget variable to the link you get from discord to your own servers webhook.*/
+      request.setRequestHeader('Content-type', 'application/json');/*Leave this line of code alone or the webhook will not function.*/
+      var params = {
+        username: name,/*Username is the name the webhook displays on Discord.*/
+        avatar_url: avatar_url,/*avatar_url is the image the webhook displays on Discord.*/
+        content: message_content /*content is the message to be sent on Discord.*/
+      }
+      request.send(JSON.stringify(params));/*Request.send will request all of the things that it is set to on function/display, and JSON.stringify rewrites the json code into something easier to read, and finally params holds most of the values*/
+      //location.reload()            //Delete the first // to force reload on chat, and delete the reload on the buttons if this is enabled.
+    }
+    </script>
+  
+  <p class="creator">This has been created by <a href="https://mittens.glitch.me/u/orago" target="_blank"><i class="fa fa-certificate"></i> Orago</a></p>
+<p class="discord">Whats a webhook? Read the <a href="https://support.discord.com/hc/en-us/articles/228383668" target="_blank"><i class="fa fa-discord"></i> Intro to Webhooks</a></p>
+
+
+</html>
+
+
+
+
+<style>
+@import url("https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css");
+* {
+	 box-sizing: border-box;
+}
+ html, body {
+	 margin: 0 auto;
+	 height: 100%;
+}
+
+
+input {
+  top:40px;
+  display: grid;
+  font-size: 16px;
+  margin-bottom: 10px;
+  grid-gap: 1em;
+  padding: 1em;
+  width: 100%;
+  max-width: 40ch;
+  position:relative;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.2);
+  animation: textColor 10s ease infinite;
+  
+}
+
+button {
+  top:35px;
+  background-color: #bbbbf2;
+  border: 2px solid currentColor;
+  border-radius: .25em;
+  cursor: pointer;
+  display:grid;
+  font-size: inherit;
+  line-height: 1.4em;
+  padding: 0.25em 1em;
+  max-width: 20ch;
+  flex-direction: column;
+	justify-content: center;
+  position:relative;
+  margin: 0 auto;
+  animation: textColor 10s ease infinite;
+}
+ body {
+   position:relative;
+	 display: flex;
+	 align-items: center;
+	 font-family: monospace;
+	 justify-content: center;
+	 background-color: #1d212b;
+}
+ div {
+	 position: relative;
+	 width: 30vw;
+	 height: 30vw;
+	 line-height: 30vw;
+	 text-align: center;
+	 color: #252b37;
+	 background-color: #151823;
+	 animation: textColor 10s ease infinite;
+   flex-direction: column;
+	 justify-content: center;
+}
+ div:after {/**/
+	 position: absolute;
+	 content: "";
+	 top: 5vw;
+	 left: 0;
+	 right: 0;
+	 z-index: -1;
+	 height: 100%;
+	 width: 100%;
+	 margin: 0 auto;
+	 transform: scale(0.75);
+	 -webkit-filter: blur(5vw);
+	 -moz-filter: blur(5vw);
+	 -ms-filter: blur(5vw);
+	 filter: blur(5vw);
+	 background: linear-gradient(270deg, #0fffc1, #7e0fff);
+	 background-size: 200% 200%;
+	 animation: animateGlow 10s ease infinite;
+}
+@keyframes animateBackground {
+	 0% {
+		 background-color: 0% 50%;
+	}
+	 50% {
+		 background-color: 100% 50%;
+	}
+	 100% {
+		 background-color: 0% 50%;
+	}
+}
+ @keyframes animateGlow {
+	 0% {
+		 background-position: 0% 50%;
+	}
+	 50% {
+		 background-position: 100% 50%;
+	}
+	 100% {
+		 background-position: 0% 50%;
+	}
+}
+ @keyframes textColor {
+	 0% {
+		 color: #7e0fff;
+	}
+	 50% {
+		 color: #0fffc1;
+	}
+	 100% {
+		 color: #7e0fff;
+	}
+}
+  .discord {
+	 position: absolute;
+	 bottom: 50px;
+	 color: #aab0c4;
+	 font-size: 0.9em;
+	 font-weight: 400;
+}
+ .discord a {
+	 color: #45729D;
+	 text-decoration: none;
+}
+
+  .creator {
+	 position: absolute;
+	 bottom: 25px;
+	 color: #aab0c4;
+	 font-size: 0.9em;
+	 font-weight: 400;
+}
+ .creator a {
+	 color: #45729D;
+	 text-decoration: none;
+}
+</style>
