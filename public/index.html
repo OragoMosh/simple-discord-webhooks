@@ -1,0 +1,37 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A fun little Discord Widget"><!-- Description that appears when you post the websites link on discord -->
+
+    <title>Discord Webhook Tutorial</title> <!-- Title of the website -->
+  </head>
+  <body>
+    <button onclick="sendMessage();location.reload()">Send</button><!-- Delete location.reload() to make it so that the page doesn't reload when clicked Note. this means the chat wont update -->
+    <input type="text" id="myName" placeholder="Name.." value="" title="Type in a category"><input type="text" id="myMessage" placeholder="Message Content.." value="" title="Type in a category">
+    <!--^ sets the name and message to be set -->
+    <button onclick="sendMessage();">Reload</button><!-- Sends a message without reloading your page -->
+  </body>
+<p><iframe src="/chat_log.html" height="600" width="800" frameborder="0"></iframe></p><!-- Opens the chat_log in a seperate frame -->
+<script>
+  /*Sends the message to your discord channel*/
+    function sendMessage() {
+      var name = document.getElementById("myName").value;
+      var message_content = document.getElementById("myMessage").value;
+      var request = new XMLHttpRequest();
+      request.open("POST", process.env.widget);/*Set the widget variable to the link you get from discord to your own servers webhook*/
+      request.setRequestHeader('Content-type', 'application/json');
+      var params = {
+        username: "Mittz-web:",/*Name of the bot / widget*/
+        avatar_url: "",//Avater of the bot / widget
+        content: "!v! gc "+name+": "+message_content /*Command for the bot / widget Ex. !v! gc Name: Message  | Change gc to what the command is*/
+      }
+      request.send(JSON.stringify(params));
+      //location.reload()            //Delete the first // to force reload on chat, and delete the reload on the buttons if this is enabled.
+    }
+  </script>
+  </html>
