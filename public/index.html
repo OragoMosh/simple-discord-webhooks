@@ -28,7 +28,7 @@
       var params = {
         username: "Mittz-web:",/*Name of the bot / widget*/
         avatar_url: "",//Avater of the bot / widget
-        content: "!v! gc "+name+": "+message_content /*Command for the bot / widget Ex. !v! gc Name: Message  | Change gc to what the command is*/
+        content: name+": "+message_content /*Command for the bot / widget Ex. !v! gc Name: Message  | Change gc to what the command is*/
       }
       request.send(JSON.stringify(params));
       //location.reload()            //Delete the first // to force reload on chat, and delete the reload on the buttons if this is enabled.
